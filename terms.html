@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Companio — Terms & Privacy</title>
+  <style>
+    :root{
+      --blue:#0b3d91;
+      --dark:#222;
+      --muted:#666;
+      --bg:#f7f9fc;
+      --card:#ffffff;
+      --radius:12px;
+      --maxw:900px;
+      font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
+    }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .wrap{
+      max-width:var(--maxw);
+      margin:32px auto;
+      padding:24px;
+    }
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    .logo {
+      width:56px;
+      height:56px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--card);
+      box-shadow:0 6px 18px rgba(11,61,145,0.08);
+      font-weight:700;
+      color:var(--blue);
+      font-size:20px;
+    }
+    h1{ margin:0; font-size:20px; }
+    p.lead { margin:6px 0 0; color:var(--muted); }
+
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:0 8px 30px rgba(19,24,34,0.04);
+      margin-bottom:18px;
+    }
+
+    h2{
+      color:var(--blue);
+      margin-top:0;
+      margin-bottom:8px;
+      font-size:18px;
+    }
+    h3{ margin:18px 0 6px; font-size:16px; color:var(--dark); }
+    p{ color:var(--dark); line-height:1.55; margin:10px 0; font-size:15px; }
+    ul{ margin:8px 0 12px 20px; color:var(--dark); }
+    .muted{ color:var(--muted); font-size:14px; }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+    }
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      padding:10px 14px;
+      border-radius:8px;
+      font-weight:600;
+      color:white;
+      background:var(--blue);
+      box-shadow:0 6px 14px rgba(11,61,145,0.12);
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .btn.secondary{
+      background:#f0f4fb;
+      color:var(--blue);
+      box-shadow:none;
+    }
+    .btn:active{ transform:translateY(1px); }
+    footer{ margin-top:18px; text-align:center; color:var(--muted); font-size:13px; }
+
+    /* responsive */
+    @media (max-width:640px){
+      .wrap{ padding:16px; margin:18px auto; }
+      .logo{ width:48px; height:48px; font-size:18px; }
+    }
+
+    /* print */
+    @media print{
+      body{ background:white; }
+      .actions, footer { display:none; }
+      .card { box-shadow:none; border-radius:0; padding:0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">C</div>
+      <div>
+        <h1>Companio — Terms & Privacy</h1>
+        <p class="lead">Clear, student-friendly terms and privacy information for Companio.</p>
+      </div>
+    </header>
+
+    <section class="card" id="terms">
+      <h2>Terms &amp; Conditions</h2>
+      <p class="muted"><strong>Effective Date:</strong> October 2025</p>
+
+      <p>Welcome to <strong>Companio</strong> — your digital campus companion. By using this website or mobile app, you agree to follow the terms below. Please read them carefully before signing up or logging in.</p>
+
+      <h3>1. Use of the Platform</h3>
+      <p>Companio is designed to help students access campus information, resources, and updates conveniently. You agree to use the platform responsibly and only for academic or campus-related purposes. You must not upload, share, or post anything that is offensive, harmful, or violates campus or national laws.</p>
+
+      <h3>2. Account Responsibility</h3>
+      <p>You are responsible for keeping your login credentials private. Do not share your account with others or try to access another user’s account. Companio may suspend or remove accounts that violate these terms.</p>
+
+      <h3>3. Privacy and Data</h3>
+      <p>Companio may collect basic information (like name, email, and usage data) to improve user experience. Your personal data will not be sold or shared with unauthorized third parties. By using the platform, you consent to our data handling practices as described in the Privacy Policy below.</p>
+
+      <h3>4. Content and Accuracy</h3>
+      <p>While we strive to keep information accurate and up-to-date, Companio does not guarantee that all content will always be correct or complete. We are not responsible for losses or issues that occur from relying on outdated or incorrect information.</p>
+
+      <h3>5. System Use and Security</h3>
+      <p>Do not attempt to hack, modify, or interfere with the platform’s functionality. Companio may perform updates, maintenance, or temporary downtime to improve performance and security.</p>
+
+      <h3>6. Changes to Terms</h3>
+      <p>These terms may be updated periodically to reflect new policies or features. Continued use of Companio means you accept the updated terms.</p>
+
+      <h3>7. Contact</h3>
+      <p>For questions, feedback, or support, please contact your campus IT support or the Companio development team.</p>
+    </section>
+
+    <section class="card" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted"><strong>Last Updated:</strong> October 2025</p>
+
+      <h3>1. Information We Collect</h3>
+      <p>We may collect the following information when you use Companio: basic account details (name, email), optional profile information (department, year), and usage data (pages visited, features used).</p>
+
+      <h3>2. How We Use Your Information</h3>
+      <p>We use data to provide and improve the Companio experience, send important updates, personalize dashboards, and maintain security. We do not sell or rent your personal information.</p>
+
+      <h3>3. Data Storage and Security</h3>
+      <p>Your data is stored on trusted cloud services and protected with reasonable measures. However, no system is completely secure. Use Companio with due care.</p>
+
+      <h3>4. Cookies and Analytics</h3>
+      <p>Companio may use cookies and analytics to improve performance and usability. You can disable cookies in your browser settings.</p>
+
+      <h3>5. Your Rights</h3>
+      <p>You can request access, correction, or deletion of your personal data. To do so, contact the Companio support team.</p>
+
+      <h3>6. Policy Updates</h3>
+      <p>We may update this policy occasionally. Continued use indicates acceptance of the latest version.</p>
+
+      <h3>7. Contact</h3>
+      <p>If you have questions about this policy or your data, contact: <strong>support@companio.app</strong> (placeholder).</p>
+    </section>
+
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; align-items:center;">
+        <div>
+          <p class="muted" style="margin:0">Need to save a copy? Use your browser's Print → Save as PDF.</p>
+        </div>
+        <div class="actions">
+          <a class="btn secondary" href="companio.html">Back to Home</a>
+          <a class="btn" href="contact.html">Contact Support</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      © <span id="year"></span> Companio — Built for students. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    // set year dynamically
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
