@@ -1,0 +1,98 @@
+/* General styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0ea7e4, #0073e6);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.logo {
+  width: 90px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+h1 {
+  font-size: 32px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.tagline {
+  font-size: 16px;
+  color: #e0f4ff;
+  margin-top: 5px;
+}
+
+/* Features Section */
+.features {
+  width: 90%;
+  max-width: 1000px;
+  margin-top: 40px;
+}
+
+.features h2 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 22px;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+/* Feature Cards */
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.card h3 {
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.card p {
+  color: #e6f7ff;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 13px;
+  color: #d9efff;
+  padding-bottom: 20px;
+}
