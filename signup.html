@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Companio | Sign Up</title>
+  <link rel="stylesheet" href="form.css">
+</head>
+<body>
+  <div class="form-container">
+    <img src="chatgpt.png" alt="chatgpt" class="logo">
+    <h2>Join Companio</h2>
+
+    <form id="signupForm" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+      <div class="input-group">
+        <input type="text" required>
+        <label>Full Name</label>
+      </div>
+      <div class="input-group">
+        <input type="email" required>
+        <label>Email</label>
+      </div>
+      <div class="input-group">
+        <input type="password" required>
+        <label>Password</label>
+      </div>
+
+      <label class="terms">
+        <input type="checkbox" required>
+        I agree to the <a href="terms.html" target="_blank">terms & conditions</a>
+      </label>
+
+      <button type="submit">Sign Up</button>
+
+      <p class="switch-text">
+        Already have an account? <a href="login.html">Log In</a>
+      </p>
+    </form>
+  </div>
+</body>
+</html>
