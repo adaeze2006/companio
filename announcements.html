@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Announcements | Companio</title>
+  <link rel="stylesheet" href="companio.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background:linear-gradient(rgba(0, 0, 1, 0.521), rgba(0, 0, 1, 0.437)),url(image.png)no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-top: 80px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 12px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .nav-logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #222;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #0ea7e4;
+    }
+
+    /* Main container */
+    .announcements-container {
+      max-width: 800px;
+      margin: 60px auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    .announcements-container h2 {
+      text-align: center;
+      color: #0ea7e4;
+      margin-bottom: 20px;
+    }
+
+    /* Announcement box */
+    .announcement {
+      background: #f8f8f8;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .announcement h3 {
+      color: #0ea7e4;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .announcement p {
+      margin: 0;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .announcement small {
+      display: block;
+      color: #666;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    /* Post form */
+    .post-form {
+      margin-top: 30px;
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+    }
+
+    .post-form h3 {
+      color: #0ea7e4;
+      margin-bottom: 10px;
+    }
+
+    .post-form input,
+    .post-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .post-form input:focus,
+    .post-form textarea:focus {
+      border-color: #0ea7e4;
+      box-shadow: 0 0 4px rgba(14,167,228,0.3);
+    }
+
+    .post-form button {
+      background: #0ea7e4;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+
+    .post-form button:hover {
+      background: #0c90c8;
+    }
+
+    footer {
+      background: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #555;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="chatgpt.png" alt="Companio Logo" class="nav-logo">
+    </div>
+    <div class="nav-links">
+      <a href="companio.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="announcements.html" class="active">Announcements</a>
+      <a href="contact.html">Contact</a>
+      <a href="#" onclick="logout()">Log Out</a>
+    </div>
+  </nav>
+
+  <!-- Announcements Section -->
+  <div class="announcements-container">
+    <h2>Campus Announcements</h2>
+
+    <!-- Example announcements -->
+    <div class="announcement">
+      <h3>Class Cancellation: CSC 401</h3>
+      <p>Tomorrow’s AI Fundamentals class has been postponed due to departmental meeting. A new date will be announced soon.</p>
+      <small>Posted by: Dr. Johnson — Oct 7, 2025</small>
+    </div>
+
+    <div class="announcement">
+      <h3>Seminar Update</h3>
+      <p>All final-year students are required to attend the Project Seminar presentation scheduled for Friday at 12:00 PM in Room A201.</p>
+      <small>Posted by: Admin Office — Oct 6, 2025</small>
+    </div>
+
+    <!-- Post new announcement -->
+    <div class="post-form">
+      <h3>Post a New Announcement</h3>
+      <form id="postAnnouncement" onsubmit="addAnnouncement(event)">
+        <input type="text" id="title" placeholder="Announcement Title" required>
+        <textarea id="content" rows="4" placeholder="Write your announcement..." required></textarea>
+        <button type="submit">Post Announcement</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Companio — Built for Smarter Campus Life</p>
+  </footer>
+
+  <script>
+    function logout() {
+      alert("You’ve been logged out!");
+      window.location.href = "companio.html";
+    }
+
+    function addAnnouncement(event) {
+      event.preventDefault();
+
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+      const container = document.querySelector('.announcements-container');
+
+      const newAnnouncement = document.createElement('div');
+      newAnnouncement.className = 'announcement';
+      newAnnouncement.innerHTML = `
+        <h3>🆕 ${title}</h3>
+        <p>${content}</p>
+        <small>Posted by: You — ${new Date().toLocaleDateString()}</small>
+      `;
+
+      // Insert above the post form
+      container.insertBefore(newAnnouncement, document.querySelector('.post-form'));
+      event.target.reset();
+    }
+  </script>
+</body>
+</html>
