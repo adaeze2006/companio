@@ -1,41 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Companio | Sign Up</title>
-  <link rel="stylesheet" href="form.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | Companio</title>
+  <link rel="stylesheet" href="form.css" />
 </head>
 <body>
   <div class="form-container">
-    <img src="chatgpt.png" alt="chatgpt" class="logo">
-    <h2>Join Companio</h2>
+    <img src="chatgpt.png" alt="Companio Logo" class="logo" />
+    <h2>Create Your Account</h2>
 
-    <form id="signupForm" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+    <form id="signupForm">
       <div class="input-group">
-        <input type="text" required>
+        <input type="text" id="signupName" required />
         <label>Full Name</label>
       </div>
+
       <div class="input-group">
-        <input type="email" required>
+        <input type="email" id="signupEmail" required />
         <label>Email</label>
       </div>
+
       <div class="input-group">
-        <input type="password" required>
+        <input type="password" id="signupPassword" required />
         <label>Password</label>
       </div>
 
       <label class="terms">
-        <input type="checkbox" required>
+        <input type="checkbox" required />
         I agree to the <a href="terms.html" target="_blank">terms & conditions</a>
       </label>
 
       <button type="submit">Sign Up</button>
+
+      <!-- Hidden resend button -->
+      <button type="button" id="resendEmailBtn" style="display:none;">Resend Verification Email</button>
 
       <p class="switch-text">
         Already have an account? <a href="login.html">Log In</a>
       </p>
     </form>
   </div>
+
+  <!-- Supabase setup -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://nwsuifsicnsljfdmitmz.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53c3VpZnNpY25zbGpmZG1pdG16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk4NzgxNjYsImV4cCI6MjA3NTQ1NDE2Nn0.VLFZOI3XMDOg9ZIhYi7StXPsQMwTcX0P48AkiOvO-F8";
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const signupForm = document.getElementById("signupForm");
+    const resendBtn = document.getElementById("resendEmailBtn");
+
+    signupForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("signupName").value.trim();
+      const email = document.getElementById("signupEmail").value.trim();
+      const password = document.getElementById("signupPassword").value.trim();
+
+      if (!name || !email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: "http://127.0.0.1:5500/login.html",
+          data: { full_name: name }
+        }
+      });
+
+      if (error) {
+        alert("Sign-up failed: " + error.message);
+      } else {
+        alert("✅ Please check your email to confirm your account before logging in.");
+        resendBtn.style.display = "block"; // show resend button after first signup
+      }
+    });
+
+    // ✅ Resend verification email logic
+    resendBtn.addEventListener("click", async () => {
+      const email = document.getElementById("signupEmail").value.trim();
+      if (!email) return alert("Enter your email first.");
+
+      const { error } = await supabase.auth.resend({
+        type: "signup",
+        email,
+        options: {
+          emailRedirectTo: "https://YOUR_USERNAME.github.io/companio/login.html"
+
+        }
+      });
+
+      if (error) alert(" Error: " + error.message);
+      else alert(" Verification email resent successfully!");
+    });
+  </script>
 </body>
 </html>
