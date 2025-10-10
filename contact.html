@@ -1,100 +1,218 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact Support — Companio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Support | Companio</title>
+  <link rel="stylesheet" href="companio.css">
   <style>
+    /* Background with your library image */
     body {
-      font-family: Arial, sans-serif;
-      background: #f7f9fc;
-      color: #222;
       margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(rgba(0, 0, 1, 0.521), rgba(0, 0, 1, 0.437)),url(image.png)no-repeat center center/cover;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;     
+}
+/* Navbar */
+.navbar {
+  position: fixed;
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 12px 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo {
+  width: 70px;
+  height: 70px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #222;
+  margin: 0 12px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #0ea7e4;
+}
+    
+
+    /* Contact form box */
+    .contact-container {
+      max-width: 400px;
+      margin: 60px auto;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 50px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      backdrop-filter: blur(8px);
     }
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 30px 40px;
-      max-width: 500px;
-      width: 90%;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+
+    .contact-container h2 {
       text-align: center;
-    }
-    .logo {
-      font-size: 32px;
-      color: #0b3d91;
-      font-weight: bold;
+      color: #0ea7e4;
       margin-bottom: 10px;
     }
-    h1 {
-      color: #0b3d91;
-      margin-bottom: 10px;
-    }
-    p {
-      color: #555;
-      font-size: 15px;
-      line-height: 1.5;
+
+    .contact-container p {
+      text-align: center;
+      color: #333;
       margin-bottom: 20px;
     }
+
     form {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
+
+    label {
+      font-weight: 500;
+      color: #222;
+    }
+
     input, textarea {
-      padding: 10px;
-      border-radius: 8px;
+      padding: 12px;
       border: 1px solid #ccc;
-      font-size: 15px;
+      border-radius: 10px;
+      font-size: 14px;
+      resize: none;
+      outline: none;
     }
+
+    input:focus, textarea:focus {
+      border-color: #0ea7e4;
+      box-shadow: 0 0 5px rgba(14, 167, 228, 0.3);
+    }
+
     button {
-      background: #0b3d91;
+      background: #0ea7e4;
       color: white;
+      padding: 12px;
       border: none;
-      padding: 10px;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
+      font-weight: 500;
+      transition: background 0.3s;
     }
+
     button:hover {
-      background: #072a63;
+      background: #0c90c8;
     }
-    a.back {
-      display: inline-block;
-      margin-top: 15px;
-      color: #0b3d91;
+
+    .contact-info {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .contact-info a {
+      color: #0ea7e4;
       text-decoration: none;
-      font-weight: bold;
     }
-    a.back:hover {
+
+    .contact-info a:hover {
       text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(255, 255, 255, 0.85);
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #555;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+      margin-top: auto;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="logo">Companio</div>
-    <h1>Contact Support</h1>
-    <p>
-      Need help or want to share feedback?  
-      Fill out the form below and our team will get back to you soon.
-    </p>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="chatgpt.png" alt="chatgpt" class="nav-logo">
+    </div>
+    <div class="nav-links">
+      <a href="companio.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="#" onclick="logout()">Log Out</a>
+    </div>
+  </nav>
 
-    <form action="mailto:support@companio.app" method="post" enctype="text/plain">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+  <!-- Contact Form -->
+  <div class="contact-container">
+    <h2>Contact Support</h2>
+    <p>Having issues or questions? We’d love to help. Fill out the form below and our team will get back to you shortly.</p>
+
+    <form
+      action=https://formspree.io/f/xnngbqlv
+      method="POST"
+      id="contactForm"
+    >
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="message">Your Message</label>
+      <textarea id="message" name="message" rows="4" placeholder="Describe your issue or feedback..." required></textarea>
+
       <button type="submit">Send Message</button>
     </form>
-
-    <a href="terms.html" class="back">← Back to Terms</a>
+    
+    <div class="contact-info">
+      <p>Email: <a href="adaezeukaegbu8@gmail.com">adaezeukaegbu8@gmail.com</a></p>
+      <p>Phone: +234 8074783729</p>
+    </div>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Companio — Built for Smarter Campus Life</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      if (response.ok) {
+        alert('✅ Your message has been sent successfully!');
+        form.reset();
+      } else {
+        alert('❌ Oops! Something went wrong. Please try again.');
+      }
+    });
+  </script>
+
+    // Logout function
+    function logout() {
+      alert("You’ve been logged out!");
+      window.location.href = "companio.html";
+    }
+  </script>
 </body>
 </html>
