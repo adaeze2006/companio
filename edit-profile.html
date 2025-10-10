@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile | Companio</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <style>
+    body {
+      background:linear-gradient(rgba(0, 0, 1, 0.521), rgba(0, 0, 1, 0.437)),url(image.png) no-repeat center center/cover;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      color: #222;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo {
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    .nav-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #0ea7e4;
+    }
+
+    .nav-links a {
+      margin-left: 20px;
+      color: #0ea7e4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      text-decoration: underline;
+    }
+
+    .edit-container {
+      max-width: 600px;
+      margin: 80px auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+      text-align: center;
+      color: #0ea7e4;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: 500;
+      color: #222;
+    }
+
+    input {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 14px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #0ea7e4;
+      box-shadow: 0 0 5px rgba(14,167,228,0.3);
+    }
+
+    .save-btn {
+      background: #0ea7e4;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .save-btn:hover {
+      background: #0c90c8;
+    }
+
+    .cancel-btn {
+      background: #f1f1f1;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .cancel-btn:hover {
+      background: #ddd;
+    }
+
+    footer {
+      text-align: center;
+      color: white;
+      background: rgba(0,0,0,0.4);
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="chatgpt.png" alt="Companio Logo" class="nav-logo">
+      <span class="nav-title">Companio</span>
+    </div>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="resources.html">Resources</a>
+      <a href="contact.html">Contact</a>
+      <a href="profile.html" class="active">Profile</a>
+      <a href="#" onclick="logout()">Log Out</a>
+    </div>
+  </nav>
+
+  <!-- Edit Profile Form -->
+  <div class="edit-container">
+    <h2>Edit Your Profile</h2>
+
+    <div class="profile-pic-upload" style="text-align:center; margin-bottom:20px;">
+      <img id="preview" src="profile-avatar.png" alt="profile-avatar" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:3px solid #0ea7e4; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+      <br>
+      <input type="file" id="avatarInput" accept="image/*" style="margin-top:10px;">
+    </div>
+
+    <form id="editForm" onsubmit="handleSave(event)">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" value="Bethel Ukaegbu" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" value="bethelukaegbu@example.com" required>
+
+      <label for="department">Department</label>
+      <input type="text" id="department" value="Computer Science" required>
+
+      <label for="level">Level</label>
+      <input type="text" id="level" value="300lvl" required>
+
+      <label for="matric">Matric No</label>
+      <input type="text" id="matric" value="RUN/Cmp/2022/13405" required>
+
+      <button type="submit" class="save-btn">Save Changes</button>
+      <button type="button" class="cancel-btn" onclick="window.location.href='profile.html'">Cancel</button>
+    </form>
+  </div>
+
+  <footer>
+    © 2025 Companio — Built for Smarter Campus Life
+  </footer>
+
+  <script>
+    // Save edited profile
+    function handleSave(e) {
+      e.preventDefault();
+
+      const profile = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        department: document.getElementById("department").value,
+        level: document.getElementById("level").value,
+        matric: document.getElementById("matric").value
+      };
+
+      localStorage.setItem("userProfile", JSON.stringify(profile));
+      alert("Profile updated successfully!");
+      window.location.href = "profile.html";
+    }
+
+    // Avatar upload preview & save
+    const avatarInput = document.getElementById("avatarInput");
+    const preview = document.getElementById("preview");
+
+    const savedAvatar = localStorage.getItem("userAvatar");
+    if (savedAvatar) preview.src = savedAvatar;
+
+    avatarInput.addEventListener("change", function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const imageUrl = e.target.result;
+          preview.src = imageUrl;
+          localStorage.setItem("userAvatar", imageUrl);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function logout() {
+      alert("You’ve been logged out!");
+      window.location.href = "companio.html";
+    }
+  </script>
+</body>
+</html>
