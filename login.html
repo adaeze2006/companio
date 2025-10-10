@@ -1,31 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Companio | Log In</title>
-  <link rel="stylesheet" href="form.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In | Companio</title>
+  <link rel="stylesheet" href="form.css" />
 </head>
 <body>
   <div class="form-container">
-    <img src="chatgpt.png" alt="chatgpt" class="logo">
-    <h2>Welcome Back </h2>
-    <form id="loginForm" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+    <img src="chatgpt.png" alt="Companio Logo" class="logo" />
+    <h2>Welcome Back</h2>
+
+    <form id="loginForm">
       <div class="input-group">
-        <input type="email" required>
+        <input type="email" id="loginEmail" required />
         <label>Email</label>
       </div>
+
       <div class="input-group">
-        <input type="password" required>
+        <input type="password" id="loginPassword" required />
         <label>Password</label>
       </div>
 
       <button type="submit">Log In</button>
 
       <p class="switch-text">
-        Don't have an account? <a href="signup.html">Sign Up</a>
+        Don’t have an account? <a href="signup.html">Sign Up</a>
+      </p>
+
+      <p class="switch-text">
+        <a href="#" id="forgotPassword">Forgot Password?</a>
       </p>
     </form>
   </div>
+
+  <!-- Supabase Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://nwsuifsicnsljfdmitmz.supabase.co";
+    const SUPABASE_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53c3VpZnNpY25zbGpmZG1pdG16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk4NzgxNjYsImV4cCI6MjA3NTQ1NDE2Nn0.VLFZOI3XMDOg9ZIhYi7StXPsQMwTcX0P48AkiOvO-F8";
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // ✅ LOGIN FUNCTION
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value.trim();
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        alert("Login failed: " + error.message);
+      } else {
+        alert("Login successful!");
+        window.location.href = "dashboard.html";
+      }
+    });
+
+    // ✅ RESET PASSWORD FUNCTION
+    document.getElementById("forgotPassword").addEventListener("click", async (e) => {
+      e.preventDefault();
+      const email = prompt("Enter your email to reset your password:");
+      if (!email) return;
+
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: "http://127.0.0.1:5500/reset-password.html",
+      });
+
+      if (error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("Password reset email sent! Check your inbox.");
+      }
+    });
+  </script>
 </body>
 </html>
